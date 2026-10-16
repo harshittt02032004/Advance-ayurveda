@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 
 const field =
-  "w-full rounded-2xl border border-forest/15 bg-white/80 px-5 py-3.5 text-forest placeholder:text-ink-3 outline-none transition-all duration-300 focus:border-gold focus:ring-4 focus:ring-gold/15";
+  "w-full min-w-0 max-w-full appearance-none rounded-2xl border border-forest/15 bg-white/80 px-5 py-3.5 text-forest placeholder:text-ink-3 outline-none transition-all duration-300 focus:border-gold focus:ring-4 focus:ring-gold/15";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -65,9 +65,9 @@ export default function ContactForm() {
             onSubmit={onSubmit}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid gap-4 sm:grid-cols-2"
+            className="grid min-w-0 gap-4 sm:grid-cols-2 [&>label]:min-w-0"
           >
-            <label className="sm:col-span-1">
+            <label className="min-w-0 sm:col-span-1">
               <span className="sr-only">Full name</span>
               <input name="name" required placeholder="Full name" className={field} />
             </label>

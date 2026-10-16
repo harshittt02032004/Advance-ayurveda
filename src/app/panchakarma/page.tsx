@@ -111,11 +111,11 @@ export default function PanchakarmaPage() {
 
       <section className="container-x py-16 lg:py-24">
         <SectionHeading align="center" eyebrow="What to expect" title="A course of Panchakarma, step by step" />
-        <Stagger className="mt-12 grid gap-5 md:grid-cols-4">
+        <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {stages.map((s) => (
             <StaggerItem key={s.n} className="rounded-3xl border border-forest/10 bg-white/70 p-6 shadow-soft">
               <p className="font-display text-3xl text-gold">{s.n}</p>
-              <h3 className="mt-3 font-display text-xl text-forest">{s.t}</h3>
+              <h3 className="mt-3 font-display text-xl text-forest [overflow-wrap:anywhere]">{s.t}</h3>
               <p className="mt-2 text-sm text-ink-2">{s.d}</p>
             </StaggerItem>
           ))}

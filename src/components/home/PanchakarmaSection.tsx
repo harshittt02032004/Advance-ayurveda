@@ -59,7 +59,7 @@ export default function PanchakarmaSection() {
         </div>
 
         <div className="relative lg:col-span-7">
-          <div className="grid grid-cols-12 gap-4">
+          <div className="grid grid-cols-12 gap-3 sm:gap-4">
             <motion.div
               style={{ y: y1 }}
               className="col-span-7 overflow-hidden rounded-[2rem] shadow-lift"
@@ -74,7 +74,7 @@ export default function PanchakarmaSection() {
                 />
               </Reveal>
             </motion.div>
-            <motion.div style={{ y: y2 }} className="col-span-5 space-y-4 pt-16">
+            <motion.div style={{ y: y2 }} className="col-span-5 space-y-3 pt-10 sm:space-y-4 sm:pt-16">
               <Reveal delay={0.1} className="relative aspect-square overflow-hidden rounded-[2rem] shadow-lift">
                 <Image
                   src="/images/treatments/knee.jpg"
@@ -86,10 +86,10 @@ export default function PanchakarmaSection() {
               </Reveal>
               <Reveal
                 delay={0.2}
-                className="rounded-[2rem] bg-forest p-6 text-cream shadow-lift"
+                className="rounded-[1.5rem] bg-forest p-4 text-cream shadow-lift sm:rounded-[2rem] sm:p-6"
               >
-                <p className="font-display text-4xl text-gold">5</p>
-                <p className="mt-1 text-sm leading-snug text-cream/80">
+                <p className="font-display text-3xl text-gold sm:text-4xl">5</p>
+                <p className="mt-1 text-xs leading-snug text-cream/80 [overflow-wrap:anywhere] sm:text-sm">
                   classical procedures — Vamana, Virechana, Basti, Nasya,
                   Raktamokshana — plus supporting therapies.
                 </p>

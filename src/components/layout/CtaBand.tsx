@@ -48,7 +48,7 @@ export function CtaBand({
                 </Button>
               </div>
             </div>
-            <div className="rounded-3xl border border-cream/15 bg-cream/5 p-6 backdrop-blur">
+            <div className="min-w-0 rounded-3xl border border-cream/15 bg-cream/5 p-6 backdrop-blur [overflow-wrap:anywhere]">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
                 Call us
               </p>

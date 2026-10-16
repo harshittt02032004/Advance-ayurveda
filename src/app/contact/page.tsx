@@ -52,7 +52,7 @@ export default function ContactPage() {
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sage-light text-forest transition-colors duration-500 group-hover:bg-forest group-hover:text-gold">
                     <Icon name={c.icon} className="h-6 w-6" />
                   </span>
-                  <span className="flex-1">
+                  <span className="min-w-0 flex-1 [overflow-wrap:anywhere]">
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-moss">{c.t}</span>
                     {c.lines.map((l) => (
                       <span key={l} className="block text-forest">{l}</span>

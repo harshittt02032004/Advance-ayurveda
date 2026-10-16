@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { nav, site } from "@/lib/site";
 import { Icon } from "@/components/ui/Icon";
-import { Logo } from "./Logo";
+import { Mark } from "./Logo";
+
+const ease = [0.23, 1, 0.32, 1] as const;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,7 +16,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -25,144 +27,212 @@ export default function Navbar() {
     document.documentElement.classList.toggle("lenis-stopped", open);
   }, [open]);
 
+  // Dark glass over the hero at the top of the page; cream glass once scrolled or when the menu is open.
+  const light = scrolled || open;
+  const links = nav.filter((n) => n.href !== "/");
+
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
-        className="fixed inset-x-0 top-0 z-50"
+        transition={{ duration: 0.9, ease, delay: 0.15 }}
+        className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
       >
         <div
-          className={`transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${
-            scrolled
-              ? "bg-cream/85 shadow-[0_1px_0_0_rgb(15_61_46_/_0.08)] backdrop-blur-xl"
-              : "bg-transparent"
-          }`}
+          className={`mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-full border px-2 shadow-lift backdrop-blur-xl transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${
+            light
+              ? "border-forest/10 bg-cream/85 text-forest"
+              : "border-cream/15 bg-forest-deep/45 text-cream"
+          } ${scrolled ? "h-14" : "h-16"}`}
         >
-          <div
-            className={`container-x flex items-center justify-between transition-[height] duration-500 ${
-              scrolled ? "h-[68px]" : "h-[84px]"
-            }`}
+          {/* Brand */}
+          <Link
+            href="/"
+            aria-label={site.name}
+            className="flex min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 lg:shrink-0"
           >
-            <Link href="/" aria-label={site.name} className="shrink-0">
-              <Logo compact={scrolled} light={!scrolled} />
-            </Link>
+            <span
+              className={`grid shrink-0 place-items-center rounded-full transition-all duration-500 ${
+                scrolled ? "h-9 w-9" : "h-10 w-10"
+              } ${light ? "bg-forest text-gold" : "bg-gold text-forest-deep"}`}
+            >
+              <Mark className="h-5 w-5" />
+            </span>
+            <span className="flex min-w-0 flex-col leading-none">
+              <span className="truncate font-display text-[0.98rem] font-semibold tracking-tight sm:text-[1.05rem] lg:text-[0.95rem] lg:tracking-tighter xl:text-[1.05rem] xl:tracking-tight">
+                Advance Ayurved Centre
+              </span>
+              <span
+                className={`mt-0.5 hidden text-[0.56rem] font-semibold uppercase tracking-[0.2em] sm:block lg:hidden xl:block ${
+                  light ? "text-ink-3" : "text-cream/60"
+                }`}
+              >
+                Prayagraj · MD Ayurved
+              </span>
+            </span>
+          </Link>
 
-            <nav className="hidden items-center gap-1 lg:flex">
-              {nav.filter((n) => n.href !== "/").map((n) => {
-                const active =
-                  n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
+          {/* Desktop links */}
+          <nav className="hidden items-center lg:flex" aria-label="Primary">
+            <ul
+              className={`flex items-center gap-0.5 rounded-full p-1 ${
+                light ? "bg-forest/[0.04]" : "bg-cream/5"
+              }`}
+            >
+              {links.map((n) => {
+                const active = pathname.startsWith(n.href);
                 return (
-                  <Link
-                    key={n.href}
-                    href={n.href}
-                    className={`relative rounded-full px-3 py-2 text-[0.88rem] font-medium transition-colors ${
-                      scrolled
-                        ? active ? "text-forest" : "text-ink-2 hover:text-forest"
-                        : active ? "text-cream" : "text-cream/75 hover:text-cream"
-                    }`}
-                  >
-                    {n.label}
+                  <li key={n.href} className="relative">
+                    <Link
+                      href={n.href}
+                      className={`relative z-10 block rounded-full px-3 py-2 text-[0.82rem] font-medium transition-colors duration-300 xl:px-4 xl:text-[0.84rem] ${
+                        active
+                          ? light
+                            ? "text-cream"
+                            : "text-forest-deep"
+                          : light
+                            ? "text-ink-2 hover:text-forest"
+                            : "text-cream/80 hover:text-cream"
+                      }`}
+                    >
+                      {n.label}
+                    </Link>
                     {active && (
                       <motion.span
-                        layoutId="nav-dot"
-                        className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-gold"
-                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                        layoutId="nav-pill"
+                        className={`absolute inset-0 rounded-full ${light ? "bg-forest" : "bg-gold"}`}
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
                       />
                     )}
-                  </Link>
+                  </li>
                 );
               })}
-            </nav>
+            </ul>
+          </nav>
 
-            <div className="flex items-center gap-3">
-              <a
-                href={`tel:${site.phonePrimaryRaw}`}
-                className={`hidden items-center gap-2 whitespace-nowrap text-sm font-semibold 2xl:flex link-underline ${scrolled ? "text-forest" : "text-cream"}`}
-              >
-                <Icon name="phone" className="h-4 w-4" />
-                {site.phonePrimary}
-              </a>
-              <Link
-                href="/contact"
-                data-press
-                className={`hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold shadow-soft transition-all duration-500 [transition-timing-function:var(--ease-spring)] hover:-translate-y-0.5 hover:shadow-lift md:inline-flex ${scrolled ? "bg-forest text-cream" : "bg-gold text-forest-deep"}`}
-              >
-                Book Appointment
-              </Link>
-              <button
-                aria-label="Menu"
-                aria-expanded={open}
-                onClick={() => setOpen((v) => !v)}
-                className={`relative grid h-11 w-11 place-items-center rounded-full border backdrop-blur lg:hidden ${scrolled || open ? "border-forest/15 bg-cream/70" : "border-cream/25 bg-cream/10"}`}
-              >
-                <span
-                  className={`absolute h-[2px] w-5 ${scrolled || open ? "bg-forest" : "bg-cream"} transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${open ? "rotate-45" : "-translate-y-1.5"}`}
-                />
-                <span
-                  className={`absolute h-[2px] w-5 ${scrolled || open ? "bg-forest" : "bg-cream"} transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${open ? "opacity-0" : ""}`}
-                />
-                <span
-                  className={`absolute h-[2px] w-5 ${scrolled || open ? "bg-forest" : "bg-cream"} transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${open ? "-rotate-45" : "translate-y-1.5"}`}
-                />
-              </button>
-            </div>
+          {/* Right cluster */}
+          <div className="flex shrink-0 items-center gap-1.5">
+            <a
+              href={`tel:${site.phonePrimaryRaw}`}
+              aria-label={`Call ${site.phonePrimary}`}
+              className={`grid h-10 w-10 place-items-center rounded-full border transition-all duration-300 lg:hidden xl:grid ${
+                light
+                  ? "border-forest/10 text-forest hover:bg-forest hover:text-cream"
+                  : "border-cream/15 text-cream hover:bg-cream hover:text-forest"
+              }`}
+            >
+              <Icon name="phone" className="h-4 w-4" />
+            </a>
+            <Link
+              href="/contact"
+              data-press
+              className={`hidden items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-[0.84rem] font-semibold transition-all duration-500 [transition-timing-function:var(--ease-spring)] hover:-translate-y-0.5 md:inline-flex ${
+                light ? "bg-forest text-cream" : "bg-gold text-forest-deep"
+              }`}
+            >
+              <span className="lg:hidden xl:inline">Book Appointment</span>
+              <span className="hidden lg:inline xl:hidden">Book</span>
+              <Icon name="arrow" className="h-3.5 w-3.5" />
+            </Link>
+            <button
+              aria-label={open ? "Close menu" : "Menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className={`relative grid h-10 w-10 place-items-center rounded-full transition-colors lg:hidden ${
+                light ? "bg-forest text-cream" : "bg-cream/15 text-cream"
+              }`}
+            >
+              <span
+                className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${
+                  open ? "rotate-45" : "-translate-y-[5px]"
+                }`}
+              />
+              <span
+                className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-500 ${
+                  open ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-500 [transition-timing-function:var(--ease-spring)] ${
+                  open ? "-rotate-45" : "translate-y-[5px]"
+                }`}
+              />
+            </button>
           </div>
         </div>
       </motion.header>
 
+      {/* Mobile capsule menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            key="menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 bg-forest-deep/95 text-cream backdrop-blur-xl lg:hidden"
-            data-lenis-prevent
-          >
-            <div className="container-x flex h-full flex-col pt-28 pb-10">
-              <nav className="flex flex-col gap-1">
-                {nav.map((n, i) => (
-                  <motion.div
-                    key={n.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: 0.08 + i * 0.05,
-                      duration: 0.6,
-                      ease: [0.23, 1, 0.32, 1],
-                    }}
-                  >
-                    <Link
-                      href={n.href}
-                      className="block border-b border-cream/10 py-4 font-display text-3xl"
-                    >
-                      {n.label}
-                    </Link>
-                  </motion.div>
-                ))}
+          <>
+            <motion.button
+              key="scrim"
+              aria-label="Close menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-40 bg-forest-deep/60 backdrop-blur-sm lg:hidden"
+            />
+            <motion.div
+              key="menu"
+              initial={{ opacity: 0, y: -16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.5, ease }}
+              className="fixed inset-x-3 top-[5.25rem] z-40 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-[2rem] border border-forest/10 bg-cream p-3 shadow-lift sm:inset-x-5 sm:top-24 lg:hidden"
+              data-lenis-prevent
+            >
+              <nav aria-label="Mobile">
+                <ul className="space-y-1">
+                  {nav.map((n, i) => {
+                    const active =
+                      n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
+                    return (
+                      <motion.li
+                        key={n.href}
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.05 + i * 0.04, duration: 0.5, ease }}
+                      >
+                        <Link
+                          href={n.href}
+                          className={`flex items-center justify-between rounded-full px-5 py-3.5 font-display text-xl transition-colors ${
+                            active ? "bg-forest text-cream" : "text-forest hover:bg-forest/5"
+                          }`}
+                        >
+                          {n.label}
+                          <Icon name="arrow" className="h-4 w-4 opacity-60" />
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
               </nav>
-              <div className="mt-auto flex flex-col gap-3">
+              <div className="mt-3 grid grid-cols-2 gap-2">
                 <a
                   href={site.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-4 font-semibold text-forest-deep"
+                  className="flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-3.5 text-sm font-semibold text-forest-deep"
                 >
-                  <Icon name="whatsapp" /> WhatsApp Us
+                  <Icon name="whatsapp" className="h-4 w-4" /> WhatsApp
                 </a>
                 <a
                   href={`tel:${site.phonePrimaryRaw}`}
-                  className="flex items-center justify-center gap-2 rounded-full border border-cream/30 px-6 py-4 font-semibold"
+                  className="flex items-center justify-center gap-2 rounded-full border border-forest/15 px-4 py-3.5 text-sm font-semibold text-forest"
                 >
-                  <Icon name="phone" /> {site.phonePrimary}
+                  <Icon name="phone" className="h-4 w-4" /> Call now
                 </a>
               </div>
-            </div>
-          </motion.div>
+              <p className="mt-3 px-2 text-center text-[0.68rem] uppercase tracking-[0.18em] text-ink-3">
+                {site.hours}
+              </p>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

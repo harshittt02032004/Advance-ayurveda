@@ -119,7 +119,7 @@ export default function Footer() {
               </p>
               <p className="flex gap-3">
                 <Icon name="mail" className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <a href={`mailto:${site.email}`} className="hover:text-cream">
+                <a href={`mailto:${site.email}`} className="min-w-0 hover:text-cream [overflow-wrap:anywhere]">
                   {site.email}
                 </a>
               </p>
