@@ -1,26 +1,251 @@
 @import "tailwindcss";
 
+@theme {
+  --color-forest: #0f3d2e;
+  --color-forest-deep: #082519;
+  --color-moss: #2f6b4f;
+  --color-sage: #cfe0d3;
+  --color-sage-light: #e8f0e9;
+  --color-cream: #f7f3ea;
+  --color-cream-deep: #efe8d8;
+  --color-sand: #e5d9bd;
+  --color-gold: #c9a24d;
+  --color-gold-deep: #9d7a2a;
+  --color-terracotta: #b5563a;
+  --color-ink: #141a17;
+  --color-ink-2: #3f4a44;
+  --color-ink-3: #6d776f;
+
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  --ease-spring: cubic-bezier(0.23, 1, 0.32, 1);
+  --shadow-soft: 0 10px 40px -12px rgb(15 61 46 / 0.18);
+  --shadow-lift: 0 30px 70px -20px rgb(15 61 46 / 0.35);
+  --radius-xl2: 1.75rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --header-h: 84px;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-forest-deep);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.015em;
+}
+
+/* ---------- utilities ---------- */
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 80rem;
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-moss);
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+@utility mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+/* Gradient headline */
+.text-gold-gradient {
+  background: linear-gradient(
+    100deg,
+    #e7cf8a 0%,
+    var(--color-gold) 40%,
+    #f1dfa6 70%,
+    var(--color-gold-deep) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Floating blob */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.03);
+  }
+}
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+/* Underline link */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.5s var(--ease-spring);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Press feedback */
+[data-press] {
+  transition: transform 0.35s var(--ease-spring);
+}
+[data-press]:active {
+  transform: scale(0.97);
+}
+
+/* Pulse ring for WhatsApp */
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.animate-ping-soft {
+  animation: ping-soft 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Oil drop (hero) */
+@keyframes drip {
+  0% {
+    transform: translateY(-20px) scaleY(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(140px) scaleY(1.1);
+    opacity: 0;
+  }
+}
+.animate-drip {
+  animation: drip 2.8s ease-in infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
