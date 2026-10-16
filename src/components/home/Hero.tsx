@@ -55,7 +55,7 @@ export default function Hero() {
 
       <motion.div
         style={{ y: textY, opacity: fade }}
-        className="container-x relative flex min-h-[100svh] flex-col justify-end pb-20 pt-40 lg:justify-center lg:pb-28"
+        className="container-x relative flex min-h-[100svh] flex-col justify-end pb-32 pt-40 lg:justify-center lg:pb-28"
       >
         <motion.div
           initial={{ opacity: 0, y: 12 }}
