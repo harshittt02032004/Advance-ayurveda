@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Icon } from "@/components/ui/Icon";
 import { site } from "@/lib/site";
-import { googleRating } from "@/lib/team";
+import { googleRating } from "@/lib/reviews";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 

@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { testimonials, googleRating } from "@/lib/team";
+import { featuredReviews as testimonials, googleRating } from "@/lib/reviews";
+import { QuoteRibbon } from "@/components/reviews/QuoteRibbon";
 import { site } from "@/lib/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -18,13 +19,14 @@ export default function Testimonials() {
   const t = testimonials[i];
 
   return (
-    <section className="container-x py-20 lg:py-28">
-      <div className="grid gap-12 lg:grid-cols-12">
+    <section className="py-20 lg:py-28">
+      <QuoteRibbon className="mb-14" />
+      <div className="container-x grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <SectionHeading
             eyebrow="Patient stories"
             title="What our patients say"
-            text="Genuine reviews from patients in Prayagraj. We never edit the wording."
+            text={`Rated ${googleRating.value} on Google by ${googleRating.count}+ patients. Genuine reviews, never edited.`}
           />
           <Reveal delay={0.2}>
             <div className="mt-8 flex items-center gap-1 text-gold">
@@ -63,7 +65,7 @@ export default function Testimonials() {
                   </span>
                   <div>
                     <p className="font-semibold">{t.name}</p>
-                    <p className="text-sm text-cream/60">{t.city}</p>
+                    <p className="text-sm text-cream/60">Prayagraj · {t.source === "website" ? "Patient review" : "Google review"}</p>
                   </div>
                 </footer>
               </motion.blockquote>

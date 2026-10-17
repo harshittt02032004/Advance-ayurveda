@@ -11,6 +11,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { DoctorAvatar } from "@/components/home/Doctors";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { ReviewStrip } from "@/components/reviews/ReviewStrip";
 
 export const dynamicParams = false;
 
@@ -132,6 +133,7 @@ export default async function DoctorPage({
           </div>
         </div>
       </section>
+      {d.slug === "dr-sanjay-verma" && <ReviewStrip tags={["general"]} title="What patients say about Dr Sanjay Verma" />}
       <CtaBand title={`Book a consultation with ${d.name}`} />
     </>
   );

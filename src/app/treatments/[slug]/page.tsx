@@ -11,6 +11,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { ReviewStrip } from "@/components/reviews/ReviewStrip";
 
 export const dynamicParams = false;
 
@@ -191,6 +192,7 @@ export default async function TreatmentPage({
           </aside>
         </div>
       </section>
+      <ReviewStrip tags={[t.slug]} title={`Patients on their ${t.name.toLowerCase()} treatment and care`} />
       <CtaBand title={`Book a consultation for ${t.name.toLowerCase()}`} />
     </>
   );

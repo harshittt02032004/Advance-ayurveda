@@ -59,35 +59,7 @@ export const staff = [
   { name: "Nilesh Yadav", role: "Pharmacist" },
 ];
 
-export const googleRating = { value: 4.9, count: 320 };
-
-export const testimonials = [
-  {
-    name: "Shivam Verma",
-    city: "Prayagraj",
-    text: "Best Dr. in Prayagraj for ayurvedic treatment. He listens all your problem patiently and then treats you accordingly. Staff is also very kind.",
-  },
-  {
-    name: "Amaresh Kumar",
-    city: "Prayagraj",
-    text: "I had a very good experience at Advance Ayurved with Dr. Sanjay. He listened to my concerns patiently, explained the treatment clearly, and suggested a natural approach that suited my condition. The staff was polite, the clinic was clean.",
-  },
-  {
-    name: "Sandeep Prayag",
-    city: "Prayagraj",
-    text: "I had a truly wonderful experience at this Advanced Ayurvedic Center. The atmosphere is peaceful and healing, and the staff is extremely knowledgeable and compassionate. The treatments are deeply rooted in traditional Ayurvedic practices yet tailored to suit modern needs. I was impressed by the personalized attention given to my health concerns, and the results have been remarkable.",
-  },
-  {
-    name: "Daya Shankar Patel",
-    city: "Prayagraj",
-    text: "Well equipped Ayurvedic hospital & Panchkarma Centre in Prayagraj. Highly qualified doctor, with vast experience. Treatment of diseases without any side effects. Boon for the health of people. Thanks doctor for treating the people naturally.",
-  },
-  {
-    name: "Manish Gaur",
-    city: "Prayagraj",
-    text: "Sabse achha ayurvedic centre hai. Dr. Sahab bahut achhe swabhaw ke hai aur unki dawa bahut phayada kar rahi hai hume.",
-  },
-];
+export { googleRating, reviews as testimonials } from "./reviews";
 
 export const blogPosts = [
   {

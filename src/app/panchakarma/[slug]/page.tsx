@@ -9,6 +9,7 @@ import { CtaBand } from "@/components/layout/CtaBand";
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { ReviewStrip } from "@/components/reviews/ReviewStrip";
 
 export const dynamicParams = false;
 
@@ -97,6 +98,7 @@ export default async function TherapyPage({ params }: { params: Promise<{ slug: 
           </aside>
         </div>
       </section>
+      <ReviewStrip tags={["panchakarma"]} title="Patients on Panchakarma at the centre" />
       <CtaBand title={`Book ${t.name} at Advance Ayurved Centre`} />
     </>
   );

@@ -9,6 +9,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/layout/JsonLd";
+import { ReviewStrip } from "@/components/reviews/ReviewStrip";
 
 export const metadata: Metadata = {
   title: "Panchakarma Centre in Prayagraj",
@@ -128,6 +129,7 @@ export default function PanchakarmaPage() {
           <Reveal className="lg:col-span-8"><Accordion items={faqs} /></Reveal>
         </div>
       </section>
+      <ReviewStrip tags={["panchakarma"]} title="Patients on Panchakarma at the centre" />
       <CtaBand title="Ask the doctor if Panchakarma is right for you" />
     </>
   );
