@@ -4,68 +4,59 @@ type Tone = "light" | "dark";
 /** `light` = brand sits on a light background; `dark` = brand sits on forest/dark. */
 
 /**
- * Vector brand mark inspired by the client's logo: a leafy swoosh that curls
- * around the wordmark. Drawn in SVG so it stays crisp at any size and can be
- * recoloured for dark/light surfaces.
+ * Advance Ayurveda Centre mark.
+ * Two leaves rise and meet at the apex to form an "A" (Advance / Ayurveda);
+ * a drop of golden oil sits where the crossbar would be (Panchakarma).
+ * Pure SVG so it stays crisp at every size and recolours for dark/light surfaces.
  */
 export function BrandMark({
   className = "h-10 w-10",
   tone = "light",
+  ring = false,
 }: {
   className?: string;
   tone?: Tone;
+  ring?: boolean;
 }) {
   const id = useId().replace(/:/g, "");
   const onDark = tone === "dark";
-  const leafA = onDark ? "#A8E063" : "#7CC243";
-  const leafB = onDark ? "#3E8E5A" : "#1F5A3A";
-  const arcA = onDark ? "#E7CF8A" : "#8CC63F";
-  const arcB = onDark ? "#C9A24D" : "#2F6B4F";
-  const vein = onDark ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.7)";
-
-  const Leaf = ({
-    x,
-    y,
-    r,
-    s = 1,
-  }: {
-    x: number;
-    y: number;
-    r: number;
-    s?: number;
-  }) => (
-    <g transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`}>
-      <path
-        d="M0 0C6-14 22-20 34-12C28 4 12 12 0 0Z"
-        fill={`url(#${id}-leaf)`}
-      />
-      <path d="M1 -1C10-6 20-10 31-11" stroke={vein} strokeWidth="1.2" fill="none" strokeLinecap="round" />
-    </g>
-  );
+  // left leaf (deeper) and right leaf (brighter) for depth
+  const l1 = onDark ? "#5FAE6E" : "#0F3D2E";
+  const l2 = onDark ? "#CDEFA4" : "#2F6B4F";
+  const r1 = onDark ? "#8CC63F" : "#3E8E5A";
+  const r2 = onDark ? "#E3F7C4" : "#A8E063";
+  const g1 = "#9D7A2A";
+  const g2 = "#F1DFA6";
+  const vein = onDark ? "rgba(8,37,25,0.35)" : "rgba(255,255,255,0.55)";
 
   return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden>
+    <svg viewBox="0 0 120 120" className={className} aria-hidden>
       <defs>
-        <linearGradient id={`${id}-leaf`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0" stopColor={leafB} />
-          <stop offset="1" stopColor={leafA} />
+        <linearGradient id={`${id}-l`} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stopColor={l1} />
+          <stop offset="1" stopColor={l2} />
         </linearGradient>
-        <linearGradient id={`${id}-arc`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0" stopColor={arcB} />
-          <stop offset="1" stopColor={arcA} />
+        <linearGradient id={`${id}-r`} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stopColor={r1} />
+          <stop offset="1" stopColor={r2} />
+        </linearGradient>
+        <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={g2} />
+          <stop offset="1" stopColor={g1} />
         </linearGradient>
       </defs>
-      {/* tapered swoosh: thick on the left, tapering to points at both tips */}
-      <path
-        d="M73 13.6A42 42 0 1 0 73 86.4A38.5 38.5 0 1 1 73 13.6Z"
-        fill={`url(#${id}-arc)`}
-      />
-      {/* leaves growing outward from the swoosh */}
-      <Leaf x={66} y={17} r={-42} s={1.15} />
-      <Leaf x={70} y={12} r={-5} s={0.55} />
-      <Leaf x={24} y={22} r={-135} s={0.95} />
-      <Leaf x={11} y={52} r={-168} s={0.8} />
-      <Leaf x={30} y={85} r={138} s={0.7} />
+      {ring && (
+        <circle cx="60" cy="62" r="55" fill="none" stroke="#C9A24D" strokeWidth="1.6" opacity="0.9" />
+      )}
+      {/* left leaf */}
+      <path d="M60 16C30 42 18 76 20 106C46 94 58 58 60 16Z" fill={`url(#${id}-l)`} />
+      <path d="M58 24C44 48 34 72 28 98" stroke={vein} strokeWidth="1.4" fill="none" strokeLinecap="round" />
+      {/* right leaf */}
+      <path d="M60 16C90 42 102 76 100 106C74 94 62 58 60 16Z" fill={`url(#${id}-r)`} />
+      <path d="M62 24C76 48 86 72 92 98" stroke={vein} strokeWidth="1.4" fill="none" strokeLinecap="round" />
+      {/* golden drop — the crossbar of the A */}
+      <path d="M60 58C53 68 50 74 50 79A10 10 0 0 0 70 79C70 74 67 68 60 58Z" fill={`url(#${id}-g)`} />
+      <ellipse cx="56" cy="76" rx="2.2" ry="3.4" fill="rgba(255,255,255,0.55)" transform="rotate(-20 56 76)" />
     </svg>
   );
 }
