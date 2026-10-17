@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { nav, site } from "@/lib/site";
 import { Icon } from "@/components/ui/Icon";
-import { Mark } from "./Logo";
+import { LogoChip } from "./Logo";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -52,13 +52,10 @@ export default function Navbar() {
             aria-label={site.name}
             className="flex min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 lg:shrink-0"
           >
-            <span
-              className={`grid shrink-0 place-items-center rounded-full transition-all duration-500 ${
-                scrolled ? "h-9 w-9" : "h-10 w-10"
-              } ${light ? "bg-forest text-gold" : "bg-gold text-forest-deep"}`}
-            >
-              <Mark className="h-5 w-5" />
-            </span>
+            <LogoChip
+              priority
+              className={`rounded-xl transition-all duration-500 ${scrolled ? "h-9 w-9" : "h-11 w-11"}`}
+            />
             <span className="flex min-w-0 flex-col leading-none">
               <span className="truncate font-display text-[0.98rem] font-semibold tracking-tight sm:text-[1.05rem] lg:text-[0.95rem] lg:tracking-tighter xl:text-[1.05rem] xl:tracking-tight">
                 Advance Ayurved Centre

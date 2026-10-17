@@ -8,13 +8,13 @@ export default function Intro() {
     <section className="container-x py-20 lg:py-28">
       <div className="grid items-center gap-14 lg:grid-cols-12">
         <div className="relative lg:col-span-6">
-          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lift sm:aspect-[5/4] lg:aspect-[4/5]">
+          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift lg:aspect-[4/4.2]">
             <Image
-              src="/images/treatments/pulse.jpg"
-              alt="Nadi pariksha — Ayurvedic pulse diagnosis at Advance Ayurved Centre, Prayagraj"
+              src="/images/clinic/reception-wide.jpg"
+              alt="Reception and Ayurvedic medical store at Advance Ayurved Centre, Tagore Town, Prayagraj"
               fill
               sizes="(min-width:1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-[1.6s] [transition-timing-function:var(--ease-spring)] hover:scale-105"
+              className="object-cover object-left transition-transform duration-[1.6s] [transition-timing-function:var(--ease-spring)] hover:scale-105"
             />
           </Reveal>
           <Reveal

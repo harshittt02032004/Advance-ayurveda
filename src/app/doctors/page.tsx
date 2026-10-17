@@ -32,7 +32,7 @@ export default function DoctorsPage() {
           {doctors.map((d) => (
             <StaggerItem key={d.slug}>
               <article className="flex h-full flex-col rounded-[2rem] border border-forest/10 bg-white/70 p-3 shadow-soft">
-                <DoctorAvatar initials={d.initials} />
+                <DoctorAvatar initials={d.initials} photo={d.photo} name={d.name} />
                 <div className="flex flex-1 flex-col p-5">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-moss">
                     {d.role}

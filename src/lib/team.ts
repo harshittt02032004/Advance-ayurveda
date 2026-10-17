@@ -7,6 +7,7 @@ export type Doctor = {
   focus: string[];
   languages?: string[];
   initials: string;
+  photo?: string;
 };
 
 export const doctors: Doctor[] = [
@@ -24,6 +25,7 @@ export const doctors: Doctor[] = [
     ],
     languages: ["Hindi", "English"],
     initials: "SV",
+    photo: "/images/clinic/dr-sanjay-verma-desk.jpg",
   },
   {
     slug: "dr-sweta-singh",
@@ -57,7 +59,19 @@ export const staff = [
   { name: "Nilesh Yadav", role: "Pharmacist" },
 ];
 
+export const googleRating = { value: 4.9, count: 320 };
+
 export const testimonials = [
+  {
+    name: "Shivam Verma",
+    city: "Prayagraj",
+    text: "Best Dr. in Prayagraj for ayurvedic treatment. He listens all your problem patiently and then treats you accordingly. Staff is also very kind.",
+  },
+  {
+    name: "Amaresh Kumar",
+    city: "Prayagraj",
+    text: "I had a very good experience at Advance Ayurved with Dr. Sanjay. He listened to my concerns patiently, explained the treatment clearly, and suggested a natural approach that suited my condition. The staff was polite, the clinic was clean.",
+  },
   {
     name: "Sandeep Prayag",
     city: "Prayagraj",

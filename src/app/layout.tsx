@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Ayurvedic Doctor in Prayagraj | Advance Ayurved Centre",
     description:
       "Doctor-led Ayurvedic treatment and Panchakarma in Prayagraj under Dr Sanjay Verma, MD (Ayurved).",
-    images: [{ url: "/images/treatments/hero.jpg", width: 1680, height: 944 }],
+    images: [{ url: "/images/clinic/dr-sanjay-verma-portrait.webp", width: 1329, height: 1200 }],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
@@ -61,7 +61,7 @@ const clinicSchema = {
   url: site.url,
   telephone: site.phonePrimaryRaw,
   email: site.email,
-  image: `${site.url}/images/treatments/hero.jpg`,
+  image: [`${site.url}/images/clinic/exterior-front.jpg`, `${site.url}/images/clinic/reception-wide.jpg`],
   medicalSpecialty: "Ayurveda",
   priceRange: "₹₹",
   address: {
@@ -81,7 +81,7 @@ const clinicSchema = {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     opens: "10:00",
-    closes: "19:00",
+    closes: "20:00",
   },
   founder: {
     "@type": "Physician",

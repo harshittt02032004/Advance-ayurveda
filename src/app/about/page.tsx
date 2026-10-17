@@ -44,7 +44,7 @@ export default function AboutPage() {
         eyebrow="About us"
         title="A doctor-led Ayurvedic centre in the heart of Prayagraj"
         text="For more than 15 years, our doctors have treated patients from Prayagraj and nearby districts for chronic and lifestyle conditions such as piles, liver disorders, joint and spine problems, diabetes and infertility."
-        image="/images/treatments/reception.jpg"
+        image="/images/clinic/reception-wide.jpg"
         crumbs={[{ href: "/about", label: "About" }]}
       />
 
@@ -72,8 +72,8 @@ export default function AboutPage() {
           <div className="relative lg:col-span-6">
             <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lift">
               <Image
-                src="/images/treatments/pharmacy.jpg"
-                alt="Ayurvedic pharmacy at Advance Ayurved Centre Prayagraj"
+                src="/images/clinic/reception-tall.jpg"
+                alt="Reception and Ayurvedic medical store at Advance Ayurved Centre, Prayagraj"
                 fill
                 sizes="(min-width:1024px) 50vw, 100vw"
                 className="object-cover"

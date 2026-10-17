@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import ContactForm from "@/components/contact/ContactForm";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Contact & Book Appointment — Prayagraj",
@@ -76,8 +77,15 @@ export default function ContactPage() {
       </section>
 
       <section className="container-x pb-20">
-        <Reveal>
-          <div className="overflow-hidden rounded-[2rem] border border-forest/10 shadow-lift">
+        <Reveal className="mb-6 grid gap-6 lg:grid-cols-12">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lift lg:col-span-4 lg:aspect-auto">
+            <Image src="/images/clinic/exterior-front.jpg" alt="Advance Ayurved Centre entrance — green signboard, near Inter College, Balson Chauraha" fill sizes="(min-width:1024px) 30vw, 100vw" className="object-cover object-[center_30%]" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-deep/85 to-transparent p-5 text-cream">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Look for this building</p>
+              <p className="font-display text-lg">Green signboard, Balson Chauraha</p>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-[2rem] border border-forest/10 shadow-lift lg:col-span-8">
             <iframe
               title="Advance Ayurved Centre on Google Maps"
               src={site.mapEmbed}
@@ -87,7 +95,9 @@ export default function ContactPage() {
               allowFullScreen
             />
           </div>
-          <div className="mt-6 flex justify-center">
+        </Reveal>
+        <Reveal>
+          <div className="flex justify-center">
             <Button href={site.mapsLink} external variant="outline">Open in Google Maps</Button>
           </div>
         </Reveal>

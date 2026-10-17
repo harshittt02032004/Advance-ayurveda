@@ -71,7 +71,7 @@ export default async function DoctorPage({
         <div className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <div className="rounded-[2rem] border border-forest/10 bg-white/70 p-3 shadow-soft">
-              <DoctorAvatar initials={d.initials} />
+              <DoctorAvatar initials={d.initials} photo={d.photo} name={d.name} />
               <div className="p-5">
                 <dl className="space-y-3 text-sm">
                   <div>

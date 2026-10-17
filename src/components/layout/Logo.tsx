@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Mark({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} fill="currentColor" aria-hidden>
@@ -7,12 +9,35 @@ export function Mark({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
+/** The client's logo artwork. It ships with its own light background, so it is
+ *  always rendered inside a clipped chip that keeps that background visible. */
+export function LogoChip({
+  className = "h-11 w-11 rounded-xl",
+  priority = false,
+}: {
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <span
+      className={`relative block shrink-0 overflow-hidden bg-[#f6f6f2] ring-1 ring-black/5 ${className}`}
+    >
+      <Image
+        src="/images/brand/logo.png"
+        alt="Advance Ayurveda Centre, Prayagraj — logo"
+        fill
+        priority={priority}
+        sizes="160px"
+        className="scale-[1.18] object-cover"
+      />
+    </span>
+  );
+}
+
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <span className="flex items-center gap-3">
-      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-forest text-gold shadow-soft">
-        <Mark className="h-7 w-7" />
-      </span>
+    <span className="flex items-center gap-4">
+      <LogoChip className="h-20 w-20 rounded-2xl" />
       <span className="flex flex-col leading-none">
         <span
           className={`font-display text-[1.1rem] font-semibold tracking-tight ${light ? "text-cream" : "text-forest"}`}

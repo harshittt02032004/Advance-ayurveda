@@ -20,7 +20,7 @@ export const site = {
   },
   geo: { lat: 25.457, lng: 81.8591 },
   // TODO: confirm with client before launch
-  hours: "Mon – Sat · 10:00 AM – 7:00 PM",
+  hours: "Mon – Sat · 10:00 AM – 8:00 PM",
   mapEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.827626322507!2d81.85907047561577!3d25.457047677544555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acb0049d642b7%3A0x7f25bd55c04b0415!2sADVANCE%20AYURVED%20CENTRE%20(DR.SANJAY%20VERMA%20%7BMD%20AYURVED%7D)!5e1!3m2!1sen!2sin!4v1751518349301!5m2!1sen!2sin",
   mapsLink:

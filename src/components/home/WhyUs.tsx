@@ -45,19 +45,19 @@ export default function WhyUs() {
             eyebrow="Why patients choose us"
             title="Care that is personal, honest and under one roof"
           />
-          <Reveal delay={0.2} className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
+          <Reveal delay={0.2} className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift lg:aspect-[4/4.4]">
             <Image
-              src="/images/treatments/reception.jpg"
-              alt="Reception and waiting area at Advance Ayurved Centre"
+              src="/images/clinic/exterior-front.jpg"
+              alt="Advance Ayurved Centre building near Inter College, Tagore Town, Prayagraj"
               fill
               sizes="(min-width:1024px) 40vw, 100vw"
-              className="object-cover"
+              className="object-cover object-[center_35%]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-deep/80 to-transparent p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
                 Tagore Town, Prayagraj
               </p>
-              <p className="font-display text-xl">A quiet place to get better</p>
+              <p className="font-display text-xl">Near Inter College, Balson Chauraha</p>
             </div>
           </Reveal>
         </div>

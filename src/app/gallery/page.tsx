@@ -11,14 +11,16 @@ export const metadata: Metadata = {
 };
 
 const photos = [
-  { src: "/images/treatments/reception.jpg", alt: "Reception and waiting area", span: "md:col-span-2 md:row-span-2" },
-  { src: "/images/treatments/shirodhara.jpg", alt: "Shirodhara therapy room" },
-  { src: "/images/treatments/pharmacy.jpg", alt: "Ayurvedic pharmacy" },
-  { src: "/images/treatments/room.jpg", alt: "Panchakarma therapy room", span: "md:col-span-2" },
-  { src: "/images/treatments/knee.jpg", alt: "Janu Basti knee therapy" },
-  { src: "/images/treatments/pulse.jpg", alt: "Nadi pariksha consultation" },
-  { src: "/images/treatments/hero.jpg", alt: "Herbs and medicated oils", span: "md:col-span-2" },
-  { src: "/images/treatments/swarnaprashan.jpg", alt: "Swarnaprashan camp" },
+  { src: "/images/clinic/reception-wide.jpg", alt: "Reception and Ayurvedic medical store", span: "md:col-span-2 md:row-span-2" },
+  { src: "/images/clinic/dr-sanjay-verma-desk.jpg", alt: "Dr Sanjay Verma in his consultation chamber", span: "md:row-span-2" },
+  { src: "/images/clinic/therapy-room.jpg", alt: "Panchakarma therapy room — steam box and Shirodhara stand" },
+  { src: "/images/clinic/exterior-front.jpg", alt: "Clinic entrance on Balson Chauraha, Tagore Town", span: "md:row-span-2" },
+  { src: "/images/clinic/therapy-boards.jpg", alt: "Therapy information boards in the waiting area", span: "md:col-span-2" },
+  { src: "/images/clinic/reception-pharmacy.jpg", alt: "Opening day at the reception" },
+  { src: "/images/clinic/entrance.jpg", alt: "Entrance signboard" },
+  { src: "/images/clinic/building.jpg", alt: "Advance Ayurved Centre building" },
+  { src: "/images/clinic/reception-tall.jpg", alt: "Reception counter and doctor chamber" },
+  { src: "/images/treatments/shirodhara.jpg", alt: "Shirodhara therapy", span: "md:col-span-2" },
 ];
 
 export default function GalleryPage() {
@@ -34,7 +36,7 @@ export default function GalleryPage() {
             </StaggerItem>
           ))}
         </Stagger>
-        <p className="mt-8 text-center text-xs text-ink-3">Certificates and registrations are displayed at the centre and will be added here.</p>
+        <p className="mt-8 text-center text-xs text-ink-3">Photos of the centre in Tagore Town, Prayagraj. Certificates and registrations are displayed at the centre.</p>
       </section>
       <CtaBand />
     </>

@@ -77,8 +77,8 @@ export default function PanchakarmaSection() {
             <motion.div style={{ y: y2 }} className="col-span-5 space-y-3 pt-10 sm:space-y-4 sm:pt-16">
               <Reveal delay={0.1} className="relative aspect-square overflow-hidden rounded-[2rem] shadow-lift">
                 <Image
-                  src="/images/treatments/knee.jpg"
-                  alt="Janu Basti knee therapy with warm medicated oil"
+                  src="/images/clinic/therapy-room.jpg"
+                  alt="Panchakarma therapy room with steam box and Shirodhara stand at Advance Ayurved Centre"
                   fill
                   sizes="25vw"
                   className="object-cover"

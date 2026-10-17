@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { testimonials } from "@/lib/team";
+import { testimonials, googleRating } from "@/lib/team";
 import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { CtaBand } from "@/components/layout/CtaBand";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function TestimonialsPage() {
   return (
     <>
-      <PageHero compact eyebrow="Patient stories" title="What our patients say" text="Genuine reviews from patients in Prayagraj. We never edit the wording and we never invent reviews." crumbs={[{ href: "/testimonials", label: "Testimonials" }]} />
+      <PageHero compact eyebrow="Patient stories" title="What our patients say" text={`Rated ${googleRating.value} on Google by ${googleRating.count}+ patients in Prayagraj. We never edit the wording and we never invent reviews.`} crumbs={[{ href: "/testimonials", label: "Testimonials" }]} />
       <section className="container-x py-16 lg:py-24">
         <Stagger className="grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (

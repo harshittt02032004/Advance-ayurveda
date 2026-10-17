@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { testimonials } from "@/lib/team";
+import { testimonials, googleRating } from "@/lib/team";
+import { site } from "@/lib/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
@@ -30,9 +31,9 @@ export default function Testimonials() {
               {[...Array(5)].map((_, k) => (
                 <Icon key={k} name="star" className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-forest">
-                Google reviews
-              </span>
+              <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" className="ml-2 text-sm font-semibold text-forest link-underline">
+                {googleRating.value} · {googleRating.count}+ Google reviews
+              </a>
             </div>
             <div className="mt-6">
               <Button href="/testimonials" variant="outline">

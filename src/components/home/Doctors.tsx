@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { doctors } from "@/lib/team";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Stagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
@@ -8,10 +9,29 @@ import { Icon } from "@/components/ui/Icon";
 export function DoctorAvatar({
   initials,
   size = "lg",
+  photo,
+  name,
 }: {
   initials: string;
   size?: "lg" | "sm";
+  photo?: string;
+  name?: string;
 }) {
+  if (photo) {
+    return (
+      <div
+        className={`relative overflow-hidden rounded-[1.75rem] bg-forest ${size === "lg" ? "aspect-[4/5]" : "h-20 w-20 rounded-2xl"}`}
+      >
+        <Image
+          src={photo}
+          alt={name ?? ""}
+          fill
+          sizes={size === "lg" ? "(min-width:1024px) 30vw, 100vw" : "80px"}
+          className="object-cover object-top"
+        />
+      </div>
+    );
+  }
   return (
     <div
       className={`relative grid place-items-center overflow-hidden rounded-[1.75rem] bg-[radial-gradient(circle_at_30%_20%,#2f6b4f,#0f3d2e_60%,#082519)] text-gold ${size === "lg" ? "aspect-[4/5]" : "h-20 w-20 rounded-2xl"}`}
@@ -60,7 +80,7 @@ export default function Doctors() {
               className="group block rounded-[2rem] border border-forest/10 bg-white/70 p-3 shadow-soft transition-all duration-500 [transition-timing-function:var(--ease-spring)] hover:-translate-y-1 hover:shadow-lift"
             >
               <div className="overflow-hidden rounded-[1.75rem] transition-transform duration-700 [transition-timing-function:var(--ease-spring)] group-hover:scale-[1.02]">
-                <DoctorAvatar initials={d.initials} />
+                <DoctorAvatar initials={d.initials} photo={d.photo} name={d.name} />
               </div>
               <div className="p-4">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-moss">
