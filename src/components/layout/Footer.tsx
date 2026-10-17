@@ -2,7 +2,7 @@ import Link from "next/link";
 import { disclaimer, site } from "@/lib/site";
 import { treatments } from "@/lib/treatments";
 import { Icon } from "@/components/ui/Icon";
-import { Logo } from "./Logo";
+import { Brand } from "./Brand";
 
 const popular = [
   "piles-fistula-fissure",
@@ -23,7 +23,7 @@ export default function Footer() {
       <div className="container-x relative pt-20 pb-10">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo light />
+            <Brand tone="dark" size="lg" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/70">
               A doctor-led Ayurvedic and Panchakarma centre in Tagore Town,
               Prayagraj, directed by Dr Sanjay Verma, MD (Ayurved).

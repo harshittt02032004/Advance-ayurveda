@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { nav, site } from "@/lib/site";
 import { Icon } from "@/components/ui/Icon";
-import { LogoChip } from "./Logo";
+import { Brand } from "./Brand";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -50,24 +50,9 @@ export default function Navbar() {
           <Link
             href="/"
             aria-label={site.name}
-            className="flex min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 lg:shrink-0"
+            className="flex min-w-0 items-center rounded-full py-1 pl-1.5 pr-3 lg:shrink-0"
           >
-            <LogoChip
-              priority
-              className={`rounded-xl transition-all duration-500 ${scrolled ? "h-9 w-9" : "h-11 w-11"}`}
-            />
-            <span className="flex min-w-0 flex-col leading-none">
-              <span className="truncate font-display text-[0.98rem] font-semibold tracking-tight sm:text-[1.05rem] lg:text-[0.95rem] lg:tracking-tighter xl:text-[1.05rem] xl:tracking-tight">
-                Advance Ayurved Centre
-              </span>
-              <span
-                className={`mt-0.5 hidden text-[0.56rem] font-semibold uppercase tracking-[0.2em] sm:block lg:hidden xl:block ${
-                  light ? "text-ink-3" : "text-cream/60"
-                }`}
-              >
-                Prayagraj · MD Ayurved
-              </span>
-            </span>
+            <Brand tone={light ? "light" : "dark"} size={scrolled ? "sm" : "md"} />
           </Link>
 
           {/* Desktop links */}
